@@ -26,7 +26,7 @@ namespace Hotel_API.Controllers
         [HttpGet]
         public ActionResult Get()
         {
-            return Content($"{Environment.GetEnvironmentVariable("desktop_logger")}");
+            return Content($"{Environment.GetEnvironmentVariable("desktop_logger_path")}");
         }
     }
 }
