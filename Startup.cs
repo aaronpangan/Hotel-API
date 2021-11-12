@@ -11,6 +11,8 @@ using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
+using Hotel_API.Model;
+using Microsoft.EntityFrameworkCore;
 
 namespace Hotel_API
 {
@@ -26,7 +28,9 @@ namespace Hotel_API
         // This method gets called by the runtime. Use this method to add services to the container.
         public void ConfigureServices(IServiceCollection services)
         {
-            services.AddControllers();
+            services.AddDbContext<DatabaseContext>(options =>
+                options.UseSqlServer(Configuration.GetConnectionString("sqlConnection"))
+            );
             services.AddCors(c =>
             {
                 c.AddPolicy("AllowAll", builder =>
@@ -38,6 +42,7 @@ namespace Hotel_API
             {
                 c.SwaggerDoc("v1", new OpenApiInfo { Title = "Hotel_API", Version = "v1" });
             });
+            services.AddControllers();
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.

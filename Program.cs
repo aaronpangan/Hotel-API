@@ -16,8 +16,13 @@ namespace Hotel_API
         public static void Main(string[] args)
         {
             //Initialize Logger
+
+            string log_path = System.Environment.MachineName == "DESKTOP-P7017U8"
+               ? Environment.GetEnvironmentVariable("desktop_logger_path")
+               : "";
+
             Log.Logger = new LoggerConfiguration()
-                .WriteTo.File(path: $"{Environment.GetEnvironmentVariable("desktop_logger_path")}log -.txt",
+                .WriteTo.File(path: $"{log_path}log -.txt",
                     outputTemplate:
                     "{Timestamp:yyyy-MM-dd HH:mm:ss.fff zzz} [{Level:u3}] {Message:lj}{NewLine}{Exception}",
                     rollingInterval: RollingInterval.Day,
