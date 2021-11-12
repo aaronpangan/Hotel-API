@@ -17,12 +17,13 @@ namespace Hotel_API
         {
             //Initialize Logger
             Log.Logger = new LoggerConfiguration()
-                .WriteTo.File(path: "C:\\Users\\AaronJoshua\\Desktop\\.NET\\Hotel-API\\logs\\log-.txt",
+                .WriteTo.File(path: $"{Environment.GetEnvironmentVariable("desktop_logger_path")}log -.txt",
                     outputTemplate:
                     "{Timestamp:yyyy-MM-dd HH:mm:ss.fff zzz} [{Level:u3}] {Message:lj}{NewLine}{Exception}",
                     rollingInterval: RollingInterval.Day,
                     restrictedToMinimumLevel: LogEventLevel.Information
                 ).CreateLogger();
+
             try
             {
                 Log.Information("Application Started");

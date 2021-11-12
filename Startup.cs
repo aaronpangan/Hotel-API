@@ -26,8 +26,14 @@ namespace Hotel_API
         // This method gets called by the runtime. Use this method to add services to the container.
         public void ConfigureServices(IServiceCollection services)
         {
-
             services.AddControllers();
+            services.AddCors(c =>
+            {
+                c.AddPolicy("AllowAll", builder =>
+                    builder.AllowAnyOrigin()
+                        .AllowAnyMethod()
+                        .AllowAnyHeader());
+            });
             services.AddSwaggerGen(c =>
             {
                 c.SwaggerDoc("v1", new OpenApiInfo { Title = "Hotel_API", Version = "v1" });
@@ -37,7 +43,6 @@ namespace Hotel_API
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.
         public void Configure(IApplicationBuilder app, IWebHostEnvironment env)
         {
-
             if (env.IsDevelopment())
             {
                 app.UseDeveloperExceptionPage();
@@ -46,11 +51,10 @@ namespace Hotel_API
             }
 
             app.UseHttpsRedirection();
-
+            app.UseCors("AllowAll");
             app.UseRouting();
 
             app.UseAuthorization();
-
 
             app.UseEndpoints(endpoints =>
             {
@@ -59,5 +63,3 @@ namespace Hotel_API
         }
     }
 }
-
-
