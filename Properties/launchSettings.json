@@ -23,6 +23,7 @@
       "launchUrl": "swagger",
       "environmentVariables": {
         "desktop_logger_path": "C:\\\\Users\\\\AaronJoshua\\\\Desktop\\\\.NET\\\\Hotel-API\\\\logs\\\\",
+        "laptop_logger_path": "C:\\\\Users\\\\sever\\\\Desktop\\\\C#\\\\proj\\\\Hotel-API\\\\logs\\\\",
         "ASPNETCORE_ENVIRONMENT": "Development"
       },
       "dotnetRunMessages": "true",

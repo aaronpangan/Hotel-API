@@ -17,12 +17,12 @@ namespace Hotel_API
         {
             //Initialize Logger
 
-            string log_path = System.Environment.MachineName == "DESKTOP-P7017U8"
-               ? Environment.GetEnvironmentVariable("desktop_logger_path")
-               : "";
+            var log_path = Environment.MachineName == "DESKTOP-P7017U8"
+                ? Environment.GetEnvironmentVariable("desktop_logger_path")
+                : Environment.GetEnvironmentVariable("laptop_logger_path");
 
             Log.Logger = new LoggerConfiguration()
-                .WriteTo.File(path: $"{log_path}log -.txt",
+                .WriteTo.File($"{log_path}log -.txt",
                     outputTemplate:
                     "{Timestamp:yyyy-MM-dd HH:mm:ss.fff zzz} [{Level:u3}] {Message:lj}{NewLine}{Exception}",
                     rollingInterval: RollingInterval.Day,
@@ -44,12 +44,11 @@ namespace Hotel_API
             }
         }
 
-        public static IHostBuilder CreateHostBuilder(string[] args) =>
-            Host.CreateDefaultBuilder(args)
+        public static IHostBuilder CreateHostBuilder(string[] args)
+        {
+            return Host.CreateDefaultBuilder(args)
                 .UseSerilog()
-                .ConfigureWebHostDefaults(webBuilder =>
-                {
-                    webBuilder.UseStartup<Startup>();
-                });
+                .ConfigureWebHostDefaults(webBuilder => { webBuilder.UseStartup<Startup>(); });
+        }
     }
 }
