@@ -11,5 +11,7 @@ namespace Hotel_API.Model
         public string Name { get; set; }
 
         public string ShortName { get; set; }
+
+        public virtual IList<HotelModel> Hotels { get; set; }
     }
 }

@@ -10,7 +10,9 @@ namespace Hotel_API.Repository
 {
     public class GenericRepository<T> : IGenericRepository<T> where T : class
     {
+        //Injected from startup.cs
         private readonly DatabaseContext _context;
+
         private readonly DbSet<T> _db;
 
         //Dependency Injection
@@ -76,7 +78,7 @@ namespace Hotel_API.Repository
             await _db.AddRangeAsync(entities);
         }
 
-        public async void Update(T entity)
+        public void Update(T entity)
         {
             _db.Attach(entity);
             _context.Entry(entity).State = EntityState.Modified;
