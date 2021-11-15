@@ -33,6 +33,7 @@ namespace Hotel_API
             services.AddDbContext<DatabaseContext>(options =>
                 options.UseSqlServer(Configuration.GetConnectionString("sqlConnection"))
             );
+
             services.AddCors(c =>
             {
                 c.AddPolicy("AllowAll", builder =>
@@ -42,6 +43,7 @@ namespace Hotel_API
             });
 
             services.AddAutoMapper(typeof(MapperInitializer));
+
             services.AddSwaggerGen(c =>
             {
                 c.SwaggerDoc("v1", new OpenApiInfo { Title = "Hotel_API", Version = "v1" });
