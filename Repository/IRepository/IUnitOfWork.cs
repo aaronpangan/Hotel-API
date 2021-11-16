@@ -7,7 +7,7 @@ using Hotel_API.Model;
 
 namespace Hotel_API.Repository.IRepository
 {
-    internal interface IUnitOfWork : IDisposable
+    public interface IUnitOfWork : IDisposable
     {
         IGenericRepository<CountryModel> Countries { get; }
         IGenericRepository<HotelModel> Hotels { get; }
